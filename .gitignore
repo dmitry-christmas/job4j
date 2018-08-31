@@ -18,11 +18,10 @@
 *.zip
 *.tar.gz
 *.rar
+car
 **/target
 *.iml
 .idea
-.car.java
-.carUsage.java
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
