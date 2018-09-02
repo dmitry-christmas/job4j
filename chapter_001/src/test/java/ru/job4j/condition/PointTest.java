@@ -15,7 +15,7 @@ public class PointTest {
     @Test
     public void whenOneOneTwoTwo() {
         Point a = new Point(1, 1);
-        Point b = new Point(1,2);
+        Point b = new Point(1, 2);
         assertThat(
                 a.distanceTo(b),
                 is(1.0)
