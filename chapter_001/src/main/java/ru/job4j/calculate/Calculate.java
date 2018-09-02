@@ -1,6 +1,6 @@
 package ru.job4j.calculate;
 /**
-* Calculate
+* Calculate.
 *
 * @author Dmitry Rozhdestvenskiy (mailto:dmr1433@gmail.com)
 * @version $Id$
