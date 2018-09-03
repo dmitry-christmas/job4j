@@ -42,6 +42,7 @@ public class Triangle {
         double ac = this.a.distanceTo(c);
         double bc = this.b.distanceTo(c);
         double p = this.period(ab, ac, bc);
+        System.out.println("Сторона треугольника = " + ab + ", " + ac + ", " + bc);
         if (this.exist(ab, ac, bc)) {
             rsl = Math.sqrt(p * (p - ab) * (p - ac) * (p - bc));
         }
@@ -58,6 +59,6 @@ public class Triangle {
      * @return true, если треугольник существует.
      */
     private boolean exist(double ab, double ac, double bc) {
-        return ab > 0 && ac > 0 && bc > 0 ? true : false;
+        return ab + ac > bc || ab + bc > ac || ac + bc > ab ? true : false;
     }
 }

@@ -12,12 +12,12 @@ import static org.junit.Assert.*;
 public class TriangleTest {
     @Test
     public void triangleArea() {
-        Point a = new Point(0, 0);
-        Point b = new Point(0, 2);
-        Point c = new Point(2, 0);
+        Point a = new Point(0, 5);
+        Point b = new Point(1, 5);
+        Point c = new Point(2, 1);
         Triangle triangle = new Triangle(a, b, c);
         double result = triangle.area();
-        //System.out.println("Triangle area = " + result);
+        System.out.println("Triangle area = " + result);
         double expected = 2.0;
         assertThat(result, closeTo(expected, 0.1));
 
