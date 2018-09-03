@@ -11,8 +11,6 @@ public class Max {
      * @param - the first and second numbers.
      */
     public int max(int first, int second) {
-        int result = 0;
-        result = first >= second ? first : second;
-        return result;
+        return first >= second ? first : second;
     }
 }
