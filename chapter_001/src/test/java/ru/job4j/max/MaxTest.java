@@ -16,4 +16,11 @@ public class MaxTest {
                 result, is(10)
         );
     }
+    public void whenTenIsMoreThanFiveAndTwo() {
+        Max maximum = new Max();
+        int result = maximum.max(10, 5, 2);
+        assertThat(
+                result, is(10)
+        );
+    }
 }
