@@ -16,6 +16,8 @@ public class Triangle {
         this.b = b;
         this.c = c;
     }
+    public Triangle() {
+    }
     /**
      * Метод вычисления полупериметра по длинам сторон.
      *
@@ -57,7 +59,7 @@ public class Triangle {
      * @param bc Длина от точки b c.
      * @return true, если треугольник существует.
      */
-    private boolean exist(double ab, double ac, double bc) {
-        return ab + ac > bc || ab + bc > ac || ac + bc > ab ? true : false;
+    public boolean exist(double ab, double ac, double bc) {
+        return ab + ac > bc && ab + bc > ac && ac + bc > ab ? true : false;
     }
 }
