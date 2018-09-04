@@ -23,3 +23,4 @@ public class Calculate {
 		return "Echo, echo, echo : " + name;
 	}
 }
+// комментарий для коммита
