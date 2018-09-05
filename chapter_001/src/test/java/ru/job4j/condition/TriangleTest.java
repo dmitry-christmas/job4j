@@ -23,7 +23,7 @@ public class TriangleTest {
     @Test
     public void triangleExist() {
         Triangle t = new Triangle();
-        boolean result = t.exist(6.0,4.0, 1.0);
+        boolean result = t.exist(6.0, 4.0, 1.0);
         assertFalse(result);
     }
 }
