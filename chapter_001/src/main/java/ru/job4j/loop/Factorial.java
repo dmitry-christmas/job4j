@@ -17,13 +17,9 @@ public class Factorial {
             for (int i = 1; i <= n; i++) {
                 res *= i;
             }
-            return res;
-        } else if (n == 0) {
-            res = (int) Math.pow(n + 1, 0);
-            return res;
-        } else {
-            return -1;
+
         }
+        return res;
     }
 
 }
