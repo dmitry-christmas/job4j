@@ -30,7 +30,6 @@ public class PaintTest {
     public void whenPyramid4Left() {
         Paint paint = new Paint();
         String rsl = paint.leftTrl(4);
-        System.out.println(rsl);
         assertThat(rsl,
                 is(
                         new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
@@ -46,7 +45,6 @@ public class PaintTest {
     public void whenPyramid4() {
         Paint paint = new Paint();
         String rsl = paint.piramid(4);
-        System.out.println(rsl);
         assertThat(rsl,
                 is(
                         new StringJoiner(System.lineSeparator(), "", System.lineSeparator())
@@ -62,7 +60,6 @@ public class PaintTest {
     public void whenPyramid10() {
         Paint paint = new Paint();
         String rsl = paint.piramid(10);
-        System.out.println(rsl);
         assertThat(rsl,
                 is(
                         new StringJoiner(System.lineSeparator(), "", System.lineSeparator())

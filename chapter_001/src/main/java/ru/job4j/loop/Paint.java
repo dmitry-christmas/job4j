@@ -1,4 +1,6 @@
 package ru.job4j.loop;
+import java.util.function.BiPredicate;
+
 /**
  * Построение пирамиды заданной высоты.
  *
@@ -13,48 +15,37 @@ public class Paint {
      */
     public String piramid(int h) {
         StringBuilder screen = new StringBuilder();
-        int w = 2 * h - 1;
+                return this.loopBy(
+                h,
+                2 * h - 1,
+                (row, column) -> row >= h - column - 1 && row + h - 1 >= column
+        );
+    }
+    public String rightTrl(int h) {
+        return this.loopBy(
+                h,
+                h,
+                (row, column) -> row >= column
+        );
+    }
+    public String leftTrl(int h) {
+        return this.loopBy(
+                h,
+                h,
+                (row, column) -> row >= h - column - 1
+        );
+    }
+    private String loopBy(int h, int w, BiPredicate<Integer, Integer> predict) {
+        StringBuilder screen = new StringBuilder();
         for (int row = 0; row != h; row++) {
             for (int column = 0; column != w; column++) {
-                if (row >= h - column - 1 && row + h - 1 >= column) {
+                if (predict.test(row, column)) {
                     screen.append("^");
                 } else {
                     screen.append(" ");
                 }
             }
             screen.append(System.lineSeparator());
-        }
-        return screen.toString();
-    }
-    public String rightTrl(int h) {
-        StringBuilder screen = new StringBuilder();
-        String ln = System.lineSeparator();
-        int w = h;
-        for (int row = 0; row != h; row++) {
-            for (int column = 0; column != w; column++) {
-                if (row >= column) {
-                    screen.append("^");
-                } else {
-                      screen.append(" ");
-                }
-            }
-            screen.append(ln);
-        }
-        return screen.toString();
-    }
-    public String leftTrl(int h) {
-        StringBuilder screen = new StringBuilder();
-        String ln = System.lineSeparator();
-        int w = h;
-        for (int row = 0; row != h; row++) {
-            for (int column = 0; column != w; column++) {
-                if (row >= w - column - 1) {
-                    screen.append("^");
-                } else {
-                    screen.append(" ");
-                }
-            }
-            screen.append(ln);
         }
         return screen.toString();
     }
