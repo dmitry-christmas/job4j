@@ -12,18 +12,12 @@ public class Check {
      * @return результат проверки, если все значения массива одинаковые.
      */
     public boolean mono(boolean[] data) {
-        boolean result = false;
-        int t = 0;
-        int f = 0;
-        for (int i = 0; i < data.length; i++) {
-            if (data[i]) {
-                t++;
-            } else {
-                f++;
+        boolean result = true;
+        for (int i = 1; i < data.length; i++) {
+            if (data[i] != data[0]) {
+                result = false;
+                break;
             }
-        }
-        if (t == 3 || f == 3) {
-        result = true;
         }
         return result;
     }
