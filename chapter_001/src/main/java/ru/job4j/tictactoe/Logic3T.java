@@ -71,18 +71,13 @@ public class Logic3T {
                 }
 
             }
-            if (x >= 3 || y >= 3) {
+            if (x == this.table.length || y == this.table.length) {
                 resLine = true;
                 break;
             }
         }
 
-        if (resDiag || resDiag1 || resLine) {
-            result = true;
-        } else {
-            result = false;
-        }
-        return result;
+        return resDiag || resDiag1 || resLine;
     }
 
     public boolean hasGap() {
