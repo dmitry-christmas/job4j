@@ -5,14 +5,28 @@ package ru.job4j.profession;
  *  @version $Id$
  *  @since 0.1
  */
-public class Student extends Profession {
-    String lesson;
-    public Student(String name, int age, int hunger, int thirst, String sex, String lesson) {
+public class Student {
+    private String lesson;
+    private String name;
+    private int age;
+    public Student() {
+    }
+    public String getName() {
+        return name;
+    }
+    public void setName(String name) {
         this.name = name;
+    }
+    public int getAge() {
+        return age;
+    }
+    public void setAge(int age) {
         this.age = age;
-        this.hunger = hunger;
-        this.thirst = thirst;
-        this.sex = sex;
+    }
+    public String getLesson() {
+        return lesson;
+    }
+    public void setLesson(String lesson) {
         this.lesson = lesson;
     }
 }

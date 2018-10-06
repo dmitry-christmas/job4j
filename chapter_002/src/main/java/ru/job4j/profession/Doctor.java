@@ -6,13 +6,10 @@ package ru.job4j.profession;
  *  @since 0.1
  */
 public class Doctor extends Profession {
-    String specializaton;
-    public Doctor(String name, int hunger, int thirst, int qualification, String sex) {
-        this.name = name;
-        this.hunger = hunger;
-        this.thirst = thirst;
-        this.qualification = qualification;
-        this.sex = sex;
+    private String specialization;
+    public Doctor(String name, int age, int hunger, int thirst, int qualification, String sex, String specialization) {
+        super(name, age, hunger, thirst, qualification, sex);
+        this.specialization = specialization;
     }
     /**
      * Метод лечения пациента.
@@ -20,6 +17,12 @@ public class Doctor extends Profession {
      * @return диагноз.
      */
     public String heal(Patient patient) {
-        return patient.diagnose;
+        return patient.getDiagnose();
+    }
+    public String getSpecialization() {
+        return specialization;
+    }
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
     }
 }

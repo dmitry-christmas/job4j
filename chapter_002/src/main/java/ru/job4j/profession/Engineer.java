@@ -7,12 +7,7 @@ package ru.job4j.profession;
  */
 public class Engineer extends Profession {
     public Engineer(String name, int age, int hunger, int thirst, int qualification, String sex) {
-    this.name = name;
-    this.age = age;
-    this.hunger = hunger;
-    this.thirst = thirst;
-    this.qualification = qualification;
-    this.sex = sex;
+    super(name, age, hunger, thirst, qualification, sex);
     }
     /**
      * Метод строительства дома.
@@ -20,6 +15,6 @@ public class Engineer extends Profession {
      * @return тип строящегося дома.
      */
     public String built(House house) {
-        return house.type;
+        return house.getType();
     }
 }

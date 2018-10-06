@@ -6,8 +6,13 @@ package ru.job4j.profession;
  *  @since 0.1
  */
 public class House {
-    String type;
-    public House(String type) {
+    private String type;
+    public House() {
+    }
+    public String getType() {
+        return type;
+    }
+    public void setType(String type) {
         this.type = type;
     }
 }

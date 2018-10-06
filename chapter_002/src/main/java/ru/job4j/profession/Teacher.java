@@ -6,22 +6,25 @@ package ru.job4j.profession;
  *  @since 0.1
  */
 public class Teacher extends Profession {
-    String specializaton;
-    public Teacher(String name, int age, int hunger, int thirst, int qualification, String sex, String specializaton) {
-        this.name = name;
-        this.age = age;
-        this.hunger = hunger;
-        this.thirst = thirst;
-        this.qualification = qualification;
-        this.sex = sex;
-        this.specializaton = specializaton;
+    private String specialization;
+    public Teacher(String name, int age, int hunger, int thirst, int qualification, String sex, String specialization) {
+        super(name, age, hunger, thirst, qualification, sex);
+        this.specialization = specialization;
     }
+
     /**
      * Метод обучения студента.
      * @param student студент.
      * @return название урока.
      */
     public String teach(Student student) {
-        return student.lesson;
+        return student.getLesson();
+    }
+    public String getSpecialization() {
+        return specialization;
+    }
+
+    public void setSpecialization(String specialization) {
+        this.specialization = specialization;
     }
 }
