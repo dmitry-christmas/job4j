@@ -67,8 +67,8 @@ public class Tracker {
                 quantity++;
             }
         }
-        return Arrays.copyOf(items, quantity);
-        //return Arrays.copyOf(items,position);
+        //return Arrays.copyOf(items, quantity);
+        return Arrays.copyOf(items,position);
     }
     public Item[] findByName(String name) {
         Item[] temp = new Item[this.position];
