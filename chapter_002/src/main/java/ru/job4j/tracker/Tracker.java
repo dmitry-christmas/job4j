@@ -25,6 +25,7 @@ public class Tracker {
      * @param next новая заявка.
      */
     public void replace(String id, Item next) {
+        next.setId(id);
         for (int index = 0; index < position; index++) {
             if (items[index] != null && items[index].getId().equals(id)) {
                 items[index] = next;
@@ -69,12 +70,19 @@ public class Tracker {
         return Arrays.copyOf(items, quantity);
         //return Arrays.copyOf(items,position);
     }
-    public Item findByName(String name) {
-        Item result = null;
-        for (Item item : items) {
-            if (item != null && item.getName().equals(name)) {
-                result = item;
-                break;
+    public Item[] findByName(String name) {
+        Item[] temp = new Item[this.position];
+        int i = 0;
+        for (int index = 0; index < items.length; index++) {
+            if (items[index] != null && items[index].getName().equals(name)) {
+                temp[i] = items[index];
+                i++;
+            }
+        }
+        Item[] result = new Item[i];
+        for (int index = 0; index < temp.length; index++) {
+            if (temp[index] != null) {
+                result[index] = temp[index];
             }
         }
         return result;
@@ -83,7 +91,7 @@ public class Tracker {
      * Метод поиска заявки по id.
      * @param id Id заявки.
      * @return искомая заявка.
-     */
+
     public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
@@ -94,7 +102,7 @@ public class Tracker {
         }
         return result;
     }
-
+    */
     /**
      * Вывод массива с заявками.
      * @return массив с заявками.
