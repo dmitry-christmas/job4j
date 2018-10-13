@@ -38,22 +38,12 @@ public class Tracker {
      * @param id Id заявки, подлежащей удалению.
      */
     public void delete(String id) {
-        int index = 0;
-        Item[] temp = new Item[position - 1];
-        for (int i = 0; i < position; i++) {
-            if (items[i].getId().equals(id)) {
-                index = i;
+        for (int index = 0; index < position; index++) {
+            if (items[index].getId().equals(id)) {
+                System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+                position--;
                 break;
             }
-        }
-        if (index != 0) {
-            System.arraycopy(items, 0, temp, 0, index);
-            System.arraycopy(items, index + 1, temp, index, position - index - 1);
-            System.arraycopy(temp, 0, items, 0, position - 1);
-            items[position - 1] = null;
-            position--;
-        } else {
-            System.out.println("Заявка с id " + id + " не существует.");
         }
     }
     /**
