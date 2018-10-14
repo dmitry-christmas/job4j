@@ -38,7 +38,7 @@ public class TrackerTest {
         tracker.add(item3);
         tracker.add(item4);
         tracker.add(item5);
-        Item[] rst = tracker.findAll();
+        Item[] rst = tracker.getAll();
         assertThat(rst.length, is(5));
     }
     @Test
@@ -56,7 +56,7 @@ public class TrackerTest {
         tracker.add(item5);
         tracker.delete(item4.getId());
         boolean result = false;
-        Item[] rst = tracker.findAll();
+        Item[] rst = tracker.getAll();
         if (rst[0].getName().equals("test1") && rst[1].getName().equals("test2") && rst[2].getName().equals("test3") && rst[3].getName().equals("test5")) {
             result = true;
         }

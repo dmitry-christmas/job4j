@@ -50,16 +50,6 @@ public class Tracker {
      * Метод возвращает массив заполненных заявок без нулевых элементов.
      * @return массив заполненных заявок без нулевых элементов.
      */
-    public Item[] findAll() {
-        int quantity = 0;
-        for (Item item : items) {
-            if (item != null) {
-                quantity++;
-            }
-        }
-        //return Arrays.copyOf(items, quantity);
-        return Arrays.copyOf(items,position);
-    }
     public Item[] findByName(String name) {
         Item[] temp = new Item[this.position];
         int i = 0;
@@ -70,18 +60,14 @@ public class Tracker {
             }
         }
         Item[] result = new Item[i];
-        for (int index = 0; index < temp.length; index++) {
-            if (temp[index] != null) {
-                result[index] = temp[index];
-            }
-        }
+        System.arraycopy(temp, 0, result, 0, i);
         return result;
     }
     /**
      * Метод поиска заявки по id.
      * @param id Id заявки.
      * @return искомая заявка.
-
+    */
     public Item findById(String id) {
         Item result = null;
         for (Item item : items) {
@@ -92,7 +78,6 @@ public class Tracker {
         }
         return result;
     }
-    */
     /**
      * Вывод массива с заявками.
      * @return массив с заявками.
