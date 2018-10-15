@@ -83,11 +83,7 @@ public class Tracker {
      * @return массив с заявками.
      */
     public Item[] getAll() {
-        Item[] result = new Item[this.position];
-        for (int index = 0; index != this.position; index++) {
-        result[index] = this.items[index];
-        }
-        return result;
+        return Arrays.copyOf(this.items, this.position);
     }
     /**
      * метод для генерации уникального id.
