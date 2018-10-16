@@ -47,8 +47,8 @@ public class Tracker {
         }
     }
     /**
-     * Метод возвращает массив заполненных заявок без нулевых элементов.
-     * @return массив заполненных заявок без нулевых элементов.
+     * Метод поиска заявки по имени.
+     * @return массив искомых заявок.
      */
     public Item[] findByName(String name) {
         Item[] temp = new Item[this.position];

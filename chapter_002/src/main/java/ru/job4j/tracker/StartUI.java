@@ -1,4 +1,7 @@
 package ru.job4j.tracker;
+
+import java.text.DateFormat;
+
 /**
  * @version $Id$
  * @since 0.1
@@ -9,9 +12,26 @@ public class StartUI {
      */
     private static final String ADD = "0";
     /**
+     * Константа для отображения всех заявок.
+     */
+    private static final String GETALL = "1";
+    /**
+     * Константа для замены заявки.
+     */
+    private static final String REPLACE = "2";
+    /**
+     * Константа для удаления заявки.
+     */
+    private static final String DELETE = "3";
+
+    /**
      * Константа для поиска по ID.
      */
     private static final String FINDID = "4";
+    /**
+     * Константа для поиска заявки по имени.
+     */
+    private static final String FINDNAME = "5";
     /**
      * Константа для выхода из цикла.
      */
@@ -46,8 +66,20 @@ public class StartUI {
                 case ADD:
                     this.createItem();
                     break;
+                case GETALL:
+                    this.getItems();
+                    break;
+                case REPLACE:
+                    this.replace();
+                    break;
+                case DELETE:
+                    this.delete();
+                    break;
                 case FINDID:
                     this.findItem();
+                    break;
+                case FINDNAME:
+                    this.findName();
                     break;
                 case EXIT:
                     exit = true;
@@ -55,7 +87,6 @@ public class StartUI {
                 default:
                     this.unknown();
                     break;
-
             }
         }
     }
@@ -66,11 +97,66 @@ public class StartUI {
         System.out.println("------------ Добавление новой заявки --------------");
         String name = this.input.ask("Введите имя заявки :");
         String desc = this.input.ask("Введите описание заявки :");
-        Long created = 123L;
+        Long created = System.currentTimeMillis();
         String comments = "";
         Item item = new Item(name, desc, created, comments);
         this.tracker.add(item);
         System.out.println("------------ Новая заявка с getId : " + item.getId() + "-----------");
+    }
+    /**
+     * Метод реализует отображение всех заявок.
+     */
+    private void getItems() {
+        Item[] result = this.tracker.getAll();
+        if (result.length > 0) {
+            System.out.println("Список имеющихся заявок:");
+            for (int i = 0; i != result.length; i++) {
+                System.out.println("Заявка № " + (i + 1) + " Имя: " + result[i].getName() + " Id: " + result[i].getId() + " Описание: " + result[i].getDesc() + " Время создания: " + DateFormat.getDateTimeInstance().format(result[i].getCreated()));
+            }
+        } else {
+            System.out.println("Заявок не найдено");
+        }
+    }
+    /**
+     * Метод реализует замену заявки.
+     */
+    private void replace() {
+        System.out.println("------------ Замена заявки --------------");
+        String id = this.input.ask("Введите id заменяемой заявки :");
+        String name = this.input.ask("Введите имя новой заявки :");
+        String desc = this.input.ask("Введите описание новой заявки :");
+        Long created = System.currentTimeMillis();
+        String comments = "";
+        Item item = new Item(name, desc, created, comments);
+        this.tracker.replace(id, item);
+        System.out.println("Заявка с id " + id + " заменена.");
+        System.out.println("Имя новой заявки: " + item.getName() + ". Описание новой заявки: " + item.getDesc());
+    }
+    /**
+     * Метод реализует удаление заявки.
+     */
+    private void delete() {
+        System.out.println("------------ Удаление заявки --------------");
+        String id = this.input.ask("Введите id заменяемой заявки :");
+        this.tracker.delete(id);
+        System.out.println("Заявка с id " + id + " удалена.");
+    }
+    /**
+     * Метод реализует поиск заявок по имени.
+     */
+    private void findName() {
+        System.out.println("------------ Поиск заявки по имени --------------");
+        String name = this.input.ask("Введите имя искомой заявки :");
+        Item[] result = this.tracker.findByName(name);
+        if (result.length > 0) {
+            System.out.println("По вашему запросу: " + name + " найдены следующие заявки:");
+            for (Item item : result) {
+                System.out.println("Имя: " + item.getName() + " Id: " + item.getId() + " Описание: " + item.getDesc() + " Время создания: " + DateFormat.getDateTimeInstance().format(item.getCreated()));
+            }
+        } else {
+            System.out.println("По вашему запросу: " + name + " заявок не найдено.");
+        }
+
     }
     /**
      * Метод реализует демонстрацию меню.
