@@ -24,27 +24,37 @@ public class Tracker {
      * @param id Id заявки, подлежащей замене.
      * @param next новая заявка.
      */
-    public void replace(String id, Item next) {
-        next.setId(id);
-        for (int index = 0; index < position; index++) {
-            if (items[index] != null && items[index].getId().equals(id)) {
-                items[index] = next;
-                break;
+    public boolean replace(String id, Item next) {
+        boolean replace = false;
+        if (ifIdExists(id)) {
+            next.setId(id);
+            for (int index = 0; index < position; index++) {
+                if (items[index] != null && items[index].getId().equals(id)) {
+                    items[index] = next;
+                    replace = true;
+                    break;
+                }
             }
         }
+        return replace;
     }
     /**
      * Метод удаления заявки.
      * @param id Id заявки, подлежащей удалению.
      */
-    public void delete(String id) {
-        for (int index = 0; index < position; index++) {
-            if (items[index].getId().equals(id)) {
-                System.arraycopy(items, index + 1, items, index, items.length - index - 1);
-                position--;
-                break;
+    public boolean delete(String id) {
+        boolean delete = false;
+        if (ifIdExists(id)) {
+            for (int index = 0; index < position; index++) {
+                if (items[index].getId().equals(id)) {
+                    System.arraycopy(items, index + 1, items, index, items.length - index - 1);
+                    position--;
+                    delete = true;
+                    break;
+                }
             }
         }
+        return delete;
     }
     /**
      * Метод поиска заявки по имени.
@@ -92,4 +102,15 @@ public class Tracker {
     private String generateId() {
         return String.valueOf(System.currentTimeMillis() + rn.nextInt());
     }
+    public boolean ifIdExists(String id) {
+        boolean result = false;
+        for (Item item : items) {
+            if (item != null && item.getId().equals(id)) {
+                result = true;
+                break;
+            }
+        }
+        return result;
+    }
+
 }

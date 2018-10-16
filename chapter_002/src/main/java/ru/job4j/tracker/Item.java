@@ -1,4 +1,7 @@
 package ru.job4j.tracker;
+
+import java.text.DateFormat;
+
 /**
  * Общий класс заявок.
  *  @author Dmitry Rozhdestvenskiy (mailto:dmr1433@gmail.com)
@@ -46,5 +49,8 @@ public class Item {
     }
     public void setComments(String comments) {
         this.comments = comments;
+    }
+    public String getDate() {
+        return DateFormat.getDateTimeInstance().format(this.created);
     }
 }

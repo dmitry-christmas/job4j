@@ -111,7 +111,7 @@ public class StartUI {
         if (result.length > 0) {
             System.out.println("Список имеющихся заявок:");
             for (int i = 0; i != result.length; i++) {
-                System.out.println("Заявка № " + (i + 1) + " Имя: " + result[i].getName() + " Id: " + result[i].getId() + " Описание: " + result[i].getDesc() + " Время создания: " + DateFormat.getDateTimeInstance().format(result[i].getCreated()));
+                System.out.println("Заявка № " + (i + 1) + " Имя: " + result[i].getName() + " Id: " + result[i].getId() + " Описание: " + result[i].getDesc() + " Время создания: " + result[i].getDate());
             }
         } else {
             System.out.println("Заявок не найдено");
@@ -128,9 +128,12 @@ public class StartUI {
         Long created = System.currentTimeMillis();
         String comments = "";
         Item item = new Item(name, desc, created, comments);
-        this.tracker.replace(id, item);
-        System.out.println("Заявка с id " + id + " заменена.");
-        System.out.println("Имя новой заявки: " + item.getName() + ". Описание новой заявки: " + item.getDesc());
+        if (this.tracker.replace(id, item)) {
+            System.out.println("Заявка с id " + id + " заменена.");
+            System.out.println("Имя новой заявки: " + item.getName() + ". Описание новой заявки: " + item.getDesc());
+        } else {
+            System.out.println("Заявка с id: " + id + " не найдена.");
+        }
     }
     /**
      * Метод реализует удаление заявки.
@@ -138,8 +141,12 @@ public class StartUI {
     private void delete() {
         System.out.println("------------ Удаление заявки --------------");
         String id = this.input.ask("Введите id заменяемой заявки :");
-        this.tracker.delete(id);
-        System.out.println("Заявка с id " + id + " удалена.");
+        if (this.tracker.delete(id)) {
+            System.out.println("Заявка с id " + id + " удалена.");
+        } else {
+            System.out.println("Заявка с id: " + id + " не найдена.");
+        }
+
     }
     /**
      * Метод реализует поиск заявок по имени.
@@ -151,7 +158,7 @@ public class StartUI {
         if (result.length > 0) {
             System.out.println("По вашему запросу: " + name + " найдены следующие заявки:");
             for (Item item : result) {
-                System.out.println("Имя: " + item.getName() + " Id: " + item.getId() + " Описание: " + item.getDesc() + " Время создания: " + DateFormat.getDateTimeInstance().format(item.getCreated()));
+                System.out.println("Имя: " + item.getName() + " Id: " + item.getId() + " Описание: " + item.getDesc() + " Время создания: " + item.getDate());
             }
         } else {
             System.out.println("По вашему запросу: " + name + " заявок не найдено.");
