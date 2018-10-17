@@ -111,7 +111,7 @@ public class StartUI {
         if (result.length > 0) {
             System.out.println("Список имеющихся заявок:");
             for (int i = 0; i != result.length; i++) {
-                System.out.println(tostring(result[i]));
+                System.out.println(toString(result[i]));
             }
         } else {
             System.out.println("Заявок не найдено");
@@ -158,7 +158,7 @@ public class StartUI {
         if (result.length > 0) {
             System.out.println("По вашему запросу: " + name + " найдены следующие заявки:");
             for (Item item : result) {
-                System.out.println(tostring(item));
+                System.out.println(toString(item));
             }
         } else {
             System.out.println("По вашему запросу: " + name + " заявок не найдено.");
@@ -185,7 +185,7 @@ public class StartUI {
         Item result = this.tracker.findById(id);
         if (result != null) {
             System.out.println("Искомая заявка найдена!");
-            System.out.println(tostring(result));
+            System.out.println(toString(result));
         } else {
             System.out.println("Заявка с Id " + id + " не найдена.");
         }
@@ -201,7 +201,7 @@ public class StartUI {
      * @param item Заявка.
      * @return Информация о заявке.
      */
-    private String tostring(Item item) {
+    private String toString(Item item) {
         return "Имя: " + item.getName() + " Id: " + item.getId() + " Описание: " + item.getDesc() + " Время создания: " + item.getDate();
     }
     /**
