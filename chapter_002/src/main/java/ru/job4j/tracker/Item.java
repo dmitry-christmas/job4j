@@ -53,4 +53,8 @@ public class Item {
     public String getDate() {
         return DateFormat.getDateTimeInstance().format(this.created);
     }
+    public String toString() {
+        return "id: " + id + ", имя: " + name + ", описание: " + desc + ", дата создания: " + DateFormat.getDateTimeInstance().format(created);
+    }
 }
+
