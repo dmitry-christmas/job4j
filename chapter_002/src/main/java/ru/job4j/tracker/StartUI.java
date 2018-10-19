@@ -141,7 +141,7 @@ public class StartUI {
      */
     private void delete() {
         System.out.println("------------ Удаление заявки --------------");
-        String id = this.input.ask("Введите id заменяемой заявки :");
+        String id = this.input.ask("Введите id удаляемой заявки :");
         if (this.tracker.delete(id)) {
             System.out.println("Заявка с id " + id + " удалена.");
         } else {
