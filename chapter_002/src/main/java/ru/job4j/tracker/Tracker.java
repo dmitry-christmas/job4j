@@ -26,7 +26,6 @@ public class Tracker {
      */
     public boolean replace(String id, Item next) {
         boolean replace = false;
-        if (ifIdExists(id)) {
             next.setId(id);
             for (int index = 0; index < position; index++) {
                 if (items[index] != null && items[index].getId().equals(id)) {
@@ -35,7 +34,6 @@ public class Tracker {
                     break;
                 }
             }
-        }
         return replace;
     }
     /**
@@ -44,7 +42,6 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean delete = false;
-        if (ifIdExists(id)) {
             for (int index = 0; index < position; index++) {
                 if (items[index].getId().equals(id)) {
                     System.arraycopy(items, index + 1, items, index, items.length - index - 1);
@@ -53,7 +50,6 @@ public class Tracker {
                     break;
                 }
             }
-        }
         return delete;
     }
     /**
@@ -102,7 +98,7 @@ public class Tracker {
     private String generateId() {
         return String.valueOf(System.currentTimeMillis() + rn.nextInt());
     }
-    public boolean ifIdExists(String id) {
+    /*public boolean ifIdExists(String id) {
         boolean result = false;
         for (Item item : items) {
             if (item != null && item.getId().equals(id)) {
@@ -111,6 +107,6 @@ public class Tracker {
             }
         }
         return result;
-    }
+    }*/
 
 }
