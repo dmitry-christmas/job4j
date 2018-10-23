@@ -11,7 +11,6 @@ import static org.junit.Assert.assertThat;
 public class StartUITest {
     private final PrintStream stdout = System.out;
     private final ByteArrayOutputStream out = new ByteArrayOutputStream();
-    private String menu =  "Меню.\r\n0. Add new Item.\r\n1. Show all items.\r\n2. Edit item.\r\n3. Delete item.\r\n4. Find item by Id.\r\n5. Find items by name.\r\n6. Exit Program.\r\n";
     @Before
     public void loadOutput() {
         System.setOut(new PrintStream(this.out));
@@ -68,9 +67,10 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
-                .append(menu)
+                .append(makeMenu())
                 //.append("Введите пункт меню :1\r\n")
-                .append("Список имеющихся заявок:\r\n")
+                .append("Список имеющихся заявок:")
+                .append(System.lineSeparator())
                 .append("id: ")
                 .append(item.getId())
                 //.append(System.lineSeparator())
@@ -81,7 +81,7 @@ public class StartUITest {
                 .append(", дата создания: ")
                 .append(DateFormat.getDateTimeInstance().format(item.getCreated()))
                 .append(System.lineSeparator())
-                .append(menu)
+                .append(makeMenu())
                 .toString()
                 ));
     }
@@ -93,12 +93,11 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
-                        .append(menu)
-                        //.append("Введите пункт меню :1\r\n")
-                        .append("Искомая заявка найдена!\r\n")
+                        .append(makeMenu())
+                        .append("Искомая заявка найдена!")
+                        .append(System.lineSeparator())
                         .append("id: ")
                         .append(item.getId())
-                        //.append(System.lineSeparator())
                         .append(", имя: ")
                         .append("test name")
                         .append(", описание: ")
@@ -106,7 +105,7 @@ public class StartUITest {
                         .append(", дата создания: ")
                         .append(DateFormat.getDateTimeInstance().format(item.getCreated()))
                         .append(System.lineSeparator())
-                        .append(menu)
+                        .append(makeMenu())
                         .toString()
         ));
     }
@@ -119,12 +118,13 @@ public class StartUITest {
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
-                        .append(menu)
-                        .append("------------ Поиск заявки по имени --------------\r\n")
-                        .append("По вашему запросу: test name1 найдены следующие заявки:\r\n")
+                        .append(makeMenu())
+                        .append("------------ Поиск заявки по имени --------------")
+                        .append(System.lineSeparator())
+                        .append("По вашему запросу: test name1 найдены следующие заявки:")
+                        .append(System.lineSeparator())
                         .append("id: ")
                         .append(item1.getId())
-                        //.append(System.lineSeparator())
                         .append(", имя: ")
                         .append("test name1")
                         .append(", описание: ")
@@ -132,8 +132,28 @@ public class StartUITest {
                         .append(", дата создания: ")
                         .append(DateFormat.getDateTimeInstance().format(item1.getCreated()))
                         .append(System.lineSeparator())
-                        .append(menu)
+                        .append(makeMenu())
                         .toString()
         ));
+    }
+    private String makeMenu() {
+        StringBuilder menu = new StringBuilder();
+        menu.append("Меню.");
+        menu.append(System.lineSeparator());
+        menu.append("0. Add new Item.");
+        menu.append(System.lineSeparator());
+        menu.append("1. Show all items.");
+        menu.append(System.lineSeparator());
+        menu.append("2. Edit item.");
+        menu.append(System.lineSeparator());
+        menu.append("3. Delete item.");
+        menu.append(System.lineSeparator());
+        menu.append("4. Find item by Id.");
+        menu.append(System.lineSeparator());
+        menu.append("5. Find items by name.");
+        menu.append(System.lineSeparator());
+        menu.append("6. Exit Program.");
+        menu.append(System.lineSeparator());
+        return menu.toString();
     }
 }
