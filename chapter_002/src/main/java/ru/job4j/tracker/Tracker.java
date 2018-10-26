@@ -98,15 +98,4 @@ public class Tracker {
     private String generateId() {
         return String.valueOf(System.currentTimeMillis() + rn.nextInt());
     }
-    /*public boolean ifIdExists(String id) {
-        boolean result = false;
-        for (Item item : items) {
-            if (item != null && item.getId().equals(id)) {
-                result = true;
-                break;
-            }
-        }
-        return result;
-    }*/
-
 }
