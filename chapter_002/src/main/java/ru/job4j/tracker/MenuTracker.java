@@ -26,6 +26,7 @@ public class MenuTracker {
         this.actions[key].execute(this.input, this.tracker);
     }
     public void show() {
+        System.out.println("Меню.");
         for (int index = 0; index < actions.length; index++) {
             if (actions[index] != null) {
                 System.out.println(actions[index].info());
