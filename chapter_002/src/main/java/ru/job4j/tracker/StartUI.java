@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
  */
 public class StartUI {
     private final Input input;
+    private boolean functioning = true;
     /**
      * Хранилище заявок.
      */
@@ -27,20 +28,28 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
-            menu.fillActions();
-            do {
-                menu.show();
-                String temp = input.ask("Выберите пункт меню: ");
-                Pattern p = Pattern.compile("[0-9]");
-                Matcher m = p.matcher(temp);
-                if (m.matches()) {
-                    int key = Integer.valueOf(temp);
+            menu.fillActions(this);
+                do {
+                    menu.show();
+                    String temp = input.ask("Выберите пункт меню: ");
+                    Pattern p = Pattern.compile("[0-9]");
+                    Matcher m = p.matcher(temp);
+                    if (m.matches()) {
+                        int key = Integer.valueOf(temp);
                         menu.select(key);
 
-                } else {
-                    System.out.println("Пункт меню задан неправильно.");
-                }
-            } while (!"y".equals(this.input.ask("Exit? (y): ")));
+                    } else {
+                        System.out.println("Пункт меню задан неправильно.");
+                    }
+                    if (this.functioning) {
+                        if ("y".equals(this.input.ask("Exit? (y): "))) {
+                            menu.select(6);
+                        }
+                    }
+                } while (this.functioning);
+    }
+    public void exit() {
+        this.functioning = false;
     }
     /**
      * Запуск программы.
