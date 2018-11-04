@@ -19,6 +19,7 @@ public class StartUI {
      * @param input   ввод данных.
      * @param tracker хранилище заявок.
      */
+
     public StartUI(Input input, Tracker tracker) {
         this.input = input;
         this.tracker = tracker;
@@ -28,19 +29,14 @@ public class StartUI {
      */
     public void init() {
         MenuTracker menu = new MenuTracker(this.input, this.tracker);
+        int[] range = new int[menu.getActionsLength()];
+        for (int i = 0; i < range.length; i++) {
+            range[i] = i;
+        }
             menu.fillActions(this);
                 do {
                     menu.show();
-                    String temp = input.ask("Выберите пункт меню: ");
-                    Pattern p = Pattern.compile("[0-9]");
-                    Matcher m = p.matcher(temp);
-                    if (m.matches()) {
-                        int key = Integer.valueOf(temp);
-                        menu.select(key);
-
-                    } else {
-                        System.out.println("Пункт меню задан неправильно.");
-                    }
+                    menu.select(input.ask("Выберите пункт меню: ", range));
                     if (this.functioning) {
                         if ("y".equals(this.input.ask("Exit? (y): "))) {
                             menu.select(6);
@@ -57,6 +53,6 @@ public class StartUI {
      * @param args
      */
     public static void main(String[] args) {
-        new StartUI(new ConsoleInput(), new Tracker()).init();
+        new StartUI(new ValidateInput(), new Tracker()).init();
     }
 }

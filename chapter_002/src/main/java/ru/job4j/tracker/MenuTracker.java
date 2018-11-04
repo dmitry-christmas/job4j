@@ -190,4 +190,7 @@ public class MenuTracker {
             return String.format("%s. %s", this.key(), "Выход из программы.");
         }
     }
+    public int getActionsLength() {
+        return actions.length;
+    }
 }
