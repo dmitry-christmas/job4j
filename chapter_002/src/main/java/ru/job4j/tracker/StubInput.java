@@ -13,11 +13,15 @@ public class StubInput implements Input {
     }
     @Override
     public int ask(String question, int[] range) {
-        try {
-            int res = Integer.valueOf(this.value[0]);
-        } catch (NumberFormatException nfe) {
-            System.out.println("Введите корректное значение меню.");
-        }
+        do {
+            try {
+                int res = Integer.valueOf(this.value[0]);
+                invalid = false;
+            } catch (NumberFormatException nfe) {
+                System.out.println("Введите корректное значение меню.");
+            }
+        } while (invalid);
         return Integer.valueOf(this.value[this.position++]);
     }
+
 }
