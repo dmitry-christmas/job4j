@@ -22,7 +22,7 @@ public class StartUITest {
     @Test
     public void whenWrongMenuSelectThenRepeat() {
         Tracker tracker = new Tracker();
-        ValidateInput input = new ValidateInput(new StubInput(new String[]{"0", "test name", "desc", "y"}));
+        Input input = new StubInput(new String[]{"b", "test name", "desc", "y"});
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
@@ -31,7 +31,7 @@ public class StartUITest {
     @Test
     public void whenUserAddItemThenTrackerHasNewItemWithSameName() {
         Tracker tracker = new Tracker();
-        Input input = new StubInput(new String[]{"0", "test name", "desc", "y"});
+        Input input = new StubInput(new String[]{"0", "test name", "desc", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("test name"));
     }
@@ -39,7 +39,7 @@ public class StartUITest {
     public void whenUserEditItemThenTrackerHasEditedItem() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[]{"2", item.getId(), "replaced name", "replaced description", "y"});
+        Input input = new StubInput(new String[]{"2", item.getId(), "replaced name", "replaced description", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("replaced name"));
     }
@@ -47,7 +47,7 @@ public class StartUITest {
     public void whenUserReplaceItemWithWrongIdNothingChanges() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[]{"2", "123", "replaced name", "replaced description", "y"});
+        Input input = new StubInput(new String[]{"2", "123", "replaced name", "replaced description", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("test name"));
     }
@@ -56,7 +56,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
         Item item1 = tracker.add(new Item("test name1", "test description1", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[] {"3", item.getId(), "y"});
+        Input input = new StubInput(new String[] {"3", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("test name1"));
     }
@@ -64,7 +64,7 @@ public class StartUITest {
     public void whenUserDeletesItemWithWrongIdNothingChanges() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[]{"3", "123", "y"});
+        Input input = new StubInput(new String[]{"3", "123", "6"});
         new StartUI(input, tracker).init();
         assertThat(tracker.getAll()[0].getName(), is("test name"));
     }
@@ -72,7 +72,7 @@ public class StartUITest {
     public void whenUserChoseGetAll() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[] {"1", "y"});
+        Input input = new StubInput(new String[] {"1", "6"});
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
@@ -90,6 +90,7 @@ public class StartUITest {
                 .append(", дата создания: ")
                 .append(DateFormat.getDateTimeInstance().format(item.getCreated()))
                 .append(System.lineSeparator())
+                .append(makeMenu())
                 .append("------------ Выход из программы --------------")
                 .append(System.lineSeparator())
                 .toString()
@@ -99,7 +100,7 @@ public class StartUITest {
     public void whenUserFindById() {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[] {"4", item.getId(), "y"});
+        Input input = new StubInput(new String[] {"4", item.getId(), "6"});
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
@@ -117,6 +118,7 @@ public class StartUITest {
                         .append(", дата создания: ")
                         .append(DateFormat.getDateTimeInstance().format(item.getCreated()))
                         .append(System.lineSeparator())
+                        .append(makeMenu())
                         .append("------------ Выход из программы --------------")
                         .append(System.lineSeparator())
                         .toString()
@@ -127,7 +129,7 @@ public class StartUITest {
         Tracker tracker = new Tracker();
         Item item = tracker.add(new Item("test name", "test description", System.currentTimeMillis(), ""));
         Item item1 = tracker.add(new Item("test name1", "test description1", System.currentTimeMillis(), ""));
-        Input input = new StubInput(new String[] {"5", "test name1", "y"});
+        Input input = new StubInput(new String[] {"5", "test name1", "6"});
         new StartUI(input, tracker).init();
         assertThat(new String(out.toByteArray()), is(
                 new StringBuilder()
@@ -145,6 +147,7 @@ public class StartUITest {
                         .append(", дата создания: ")
                         .append(DateFormat.getDateTimeInstance().format(item1.getCreated()))
                         .append(System.lineSeparator())
+                        .append(makeMenu())
                         .append("------------ Выход из программы --------------")
                         .append(System.lineSeparator())
                         .toString()

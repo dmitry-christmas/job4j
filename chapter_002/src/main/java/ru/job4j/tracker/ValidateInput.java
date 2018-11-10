@@ -9,7 +9,6 @@ public class ValidateInput extends ConsoleInput {
     public ValidateInput(Input input) {
         this.input = input;
     }
-
     /**
      * Метод дополнительной проверки.
      * @param question вопрос.
