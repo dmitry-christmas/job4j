@@ -3,7 +3,6 @@ package ru.job4j.tracker;
 public class StubInput implements Input {
     private final String[] value;
     private int position = 0;
-    boolean invalid = true;
     public StubInput(final String[] value) {
         this.value = value;
     }
@@ -13,6 +12,7 @@ public class StubInput implements Input {
     }
     @Override
     public int ask(String question, int[] range) {
+        boolean invalid = true;
         do {
             try {
                 int res = Integer.valueOf(this.value[0]);
