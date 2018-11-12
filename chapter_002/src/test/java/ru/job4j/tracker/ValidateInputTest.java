@@ -24,10 +24,11 @@ public class ValidateInputTest {
     }
     @Test
     public void whenInvalidInput() {
-        ValidateInput input = new ValidateInput(new StubInput(new String[]{"b", "test name", "desc", "6"}));
-        input.ask("Выберите пункт меню", new int[] {1});
+        int [] range = {0, 1, 2, 3, 4, 5, 6};
+        ValidateInput input = new ValidateInput(new StubInput(new String[]{"b", "1"}));
+        input.ask("Выберите пункт меню", range);
         assertThat(this.out.toString(), is(
-                String.format("Выберите правильное значение из меню."))
+                String.format("Введите корректное значение меню.%s", System.lineSeparator()))
         );
     }
 }

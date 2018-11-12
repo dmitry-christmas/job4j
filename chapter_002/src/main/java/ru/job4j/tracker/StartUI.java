@@ -37,11 +37,6 @@ public class StartUI {
                 do {
                     menu.show();
                     menu.select(input.ask("Выберите пункт меню: ", range));
-                    /*if (this.functioning) {
-                        if ("y".equals(this.input.ask("Exit? (y): "))) {
-                            menu.select(6);
-                        }
-                    }*/
                 } while (this.functioning);
     }
     public void exit() {
