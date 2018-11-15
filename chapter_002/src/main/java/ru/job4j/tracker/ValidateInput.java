@@ -26,13 +26,20 @@ public class ValidateInput implements Input {
        do {
            try {
                value = this.input.ask(question, range);
+               boolean exist = false;
+               for (int i : range) {
+                   if (value == i) {
+                       exist = true;
+                   }
+               }
+               if (!exist) {
+                   throw new MenuOutException("Out of menu range.");
+               }
                invalid = false;
            } catch (NumberFormatException nfe) {
-               System.out.println("Введите корректное значение меню.");
+               System.out.println("Выбранный символ недопустим.");
            } catch (MenuOutException moe) {
-               System.out.println("Выберите правильное значение из меню.");
-           } catch (ArrayIndexOutOfBoundsException aiobe) {
-               System.out.println("Выберите правильное значение из меню.");
+               System.out.println("Задайте значение от 0 до 6.");
            }
        } while (invalid);
        return value;

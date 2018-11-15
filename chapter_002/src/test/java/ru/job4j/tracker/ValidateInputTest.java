@@ -28,7 +28,16 @@ public class ValidateInputTest {
         ValidateInput input = new ValidateInput(new StubInput(new String[]{"b", "1"}));
         input.ask("Выберите пункт меню", range);
         assertThat(this.out.toString(), is(
-                String.format("Введите корректное значение меню.%s", System.lineSeparator()))
+                String.format("Выбранный символ недопустим.%s", System.lineSeparator()))
+        );
+    }
+    @Test
+    public void whenInvalidNumberInput() {
+        int [] range = {0, 1, 2, 3, 4, 5, 6};
+        ValidateInput input = new ValidateInput(new StubInput(new String[]{"8", "1"}));
+        input.ask("Выберите пункт меню", range);
+        assertThat(this.out.toString(), is(
+                String.format("Задайте значение от 0 до 6.%s", System.lineSeparator()))
         );
     }
 }
