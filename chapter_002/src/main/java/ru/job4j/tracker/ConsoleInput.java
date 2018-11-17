@@ -10,6 +10,16 @@ public class ConsoleInput implements Input {
     return scanner.next();
     }
     public int ask(String question, int[] range) {
-        return Integer.valueOf(this.ask(question));
+        int value = Integer.valueOf(this.ask(question));
+        boolean exist = false;
+        for (int i : range) {
+            if (value == i) {
+                exist = true;
+            }
+        }
+        if (!exist) {
+            throw new MenuOutException("Out of menu range.");
+        }
+        return value;
     }
 }

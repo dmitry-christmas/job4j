@@ -26,15 +26,6 @@ public class ValidateInput implements Input {
        do {
            try {
                value = this.input.ask(question, range);
-               boolean exist = false;
-               for (int i : range) {
-                   if (value == i) {
-                       exist = true;
-                   }
-               }
-               if (!exist) {
-                   throw new MenuOutException("Out of menu range.");
-               }
                invalid = false;
            } catch (NumberFormatException nfe) {
                System.out.println("Выбранный символ недопустим.");
