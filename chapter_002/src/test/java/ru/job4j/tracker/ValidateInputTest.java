@@ -24,7 +24,7 @@ public class ValidateInputTest {
     }
     @Test
     public void whenInvalidInput() {
-        int [] range = {0, 1, 2, 3, 4, 5, 6};
+        int[] range = {0, 1, 2, 3, 4, 5, 6};
         ValidateInput input = new ValidateInput(new StubInput(new String[]{"b", "1"}));
         input.ask("Выберите пункт меню", range);
         assertThat(this.out.toString(), is(
@@ -33,7 +33,7 @@ public class ValidateInputTest {
     }
     @Test
     public void whenInvalidNumberInput() {
-        int [] range = {0, 1, 2, 3, 4, 5, 6};
+        int[] range = {0, 1, 2, 3, 4, 5, 6};
         ValidateInput input = new ValidateInput(new StubInput(new String[]{"8", "1"}));
         input.ask("Выберите пункт меню", range);
         assertThat(this.out.toString(), is(
