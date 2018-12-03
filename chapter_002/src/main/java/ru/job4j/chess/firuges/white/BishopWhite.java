@@ -9,7 +9,7 @@ import ru.job4j.chess.firuges.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class BishopWhite implements Figure {
+public class BishopWhite extends Figure {
     private final Cell position;
 
     public BishopWhite(final Cell position) {

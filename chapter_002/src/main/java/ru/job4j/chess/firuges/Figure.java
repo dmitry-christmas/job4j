@@ -1,17 +1,23 @@
 package ru.job4j.chess.firuges;
 
-public interface Figure {
-    Cell position();
+public abstract class Figure {
+    public abstract Cell position();
+    int move;
 
-    Cell[] way(Cell source, Cell dest);
+    public abstract Cell[] way(Cell source, Cell dest);
 
-    default String icon() {
+    public String icon() {
         return String.format(
                 "%s.png", this.getClass().getSimpleName()
         );
 
     }
+    public abstract Figure copy(Cell dest);
 
-    Figure copy(Cell dest);
-
+    public int getMove() {
+        return move;
+    }
+    public void setMove(int move) {
+        this.move = move;
+    }
 }

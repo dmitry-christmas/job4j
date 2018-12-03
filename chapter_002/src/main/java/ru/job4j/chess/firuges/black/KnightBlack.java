@@ -9,7 +9,7 @@ import ru.job4j.chess.firuges.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class KnightBlack implements Figure {
+public class KnightBlack extends Figure {
     private final Cell position;
 
     public KnightBlack(final Cell position) {

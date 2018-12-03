@@ -9,7 +9,7 @@ import ru.job4j.chess.firuges.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class RookWhite implements Figure {
+public class RookWhite extends Figure {
     private final Cell position;
 
     public RookWhite(final Cell position) {

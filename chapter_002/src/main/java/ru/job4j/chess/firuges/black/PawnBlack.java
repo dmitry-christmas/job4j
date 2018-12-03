@@ -1,5 +1,6 @@
 package ru.job4j.chess.firuges.black;
 
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.firuges.Cell;
 import ru.job4j.chess.firuges.Figure;
 
@@ -9,7 +10,7 @@ import ru.job4j.chess.firuges.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class PawnBlack implements Figure {
+public class PawnBlack extends Figure {
     private final Cell position;
     private int move;
 
@@ -28,11 +29,11 @@ public class PawnBlack implements Figure {
         Cell[] steps = new Cell[0];
         if(this.move == 0 && source.y == dest.y + 2 && source.x == dest.x) {
             steps = new Cell[] { dest };
-            this.move++;
         }
         if (source.y == dest.y + 1 && source.x == dest.x) {
             steps = new Cell[] { dest };
-            this.move++;
+        } else if (move != 0) {
+            throw new ImpossibleMoveException("Пешка ходит по одной клетке!");
         }
         return steps;
     }
@@ -40,5 +41,11 @@ public class PawnBlack implements Figure {
     @Override
     public Figure copy(Cell dest) {
         return new PawnBlack(dest, move);
+    }
+    public int getMove() {
+        return move;
+    }
+    public void setMove(int move) {
+        this.move = move;
     }
 }
