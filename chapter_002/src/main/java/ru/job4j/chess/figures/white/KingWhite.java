@@ -1,19 +1,18 @@
-package ru.job4j.chess.firuges.white;
+package ru.job4j.chess.figures.white;
 
-import ru.job4j.chess.firuges.Cell;
-import ru.job4j.chess.firuges.Figure;
+import ru.job4j.chess.figures.Cell;
+import ru.job4j.chess.figures.Figure;
 
 /**
- * //TODO add comments.
  *
  * @author Petr Arsentev (parsentev@yandex.ru)
  * @version $Id$
  * @since 0.1
  */
-public class PawnWhite extends Figure {
+public class KingWhite extends Figure {
     private final Cell position;
 
-    public PawnWhite(final Cell position) {
+    public KingWhite(final Cell position) {
         this.position = position;
     }
 
@@ -24,11 +23,11 @@ public class PawnWhite extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] { dest };
+        return new Cell[] {dest};
     }
 
     @Override
     public Figure copy(Cell dest) {
-        return new PawnWhite(dest);
+        return new KingWhite(dest);
     }
 }

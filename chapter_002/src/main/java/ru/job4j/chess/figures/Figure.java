@@ -1,4 +1,4 @@
-package ru.job4j.chess.firuges;
+package ru.job4j.chess.figures;
 
 public abstract class Figure {
     public abstract Cell position();
