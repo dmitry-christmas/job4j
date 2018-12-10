@@ -65,7 +65,7 @@ public class Chess extends Application {
                         rect.setX(((int) event.getX() / 40) * 40 + 5);
                         rect.setY(((int) event.getY() / 40) * 40 + 5);
                     } catch (ImpossibleMoveException ime) {
-                        System.out.println("Эта фигура так не ходит!");
+                        System.out.println(ime.msg);
                         rect.setX(((int) momento.getX() / 40) * 40 + 5);
                         rect.setY(((int) momento.getY() / 40) * 40 + 5);
                     } catch (FigureNotFoundException fnfe) {

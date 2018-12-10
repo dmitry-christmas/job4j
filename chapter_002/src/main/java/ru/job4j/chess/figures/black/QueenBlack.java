@@ -56,7 +56,7 @@ public class QueenBlack extends Figure {
                     index = -1;
                 }
                 for (int i = 0; i < steps.length; i++) {
-                    steps[i] = Cell.values()[source.ordinal() + (i + 1)* index * 8];
+                    steps[i] = Cell.values()[source.ordinal() + (i + 1) * index * 8];
                 }
             } else {
                 int index;
@@ -66,7 +66,7 @@ public class QueenBlack extends Figure {
                     index = -1;
                 }
                     for (int i = 0; i < steps.length; i++) {
-                        steps[i] = Cell.values()[source.ordinal() + (i + 1)* index];
+                        steps[i] = Cell.values()[source.ordinal() + (i + 1) * index];
                     }
                 }
         }
@@ -85,12 +85,11 @@ public class QueenBlack extends Figure {
         }
         return result;
     }
-    private boolean isHorizontalVertical(int deltaX, int deltaY){
+    private boolean isHorizontalVertical(int deltaX, int deltaY) {
         boolean result = false;
         if ((deltaX != 0 && deltaY == 0) || (deltaY != 0 && deltaX == 0)) {
             result = true;
         }
         return result;
     }
-
 }

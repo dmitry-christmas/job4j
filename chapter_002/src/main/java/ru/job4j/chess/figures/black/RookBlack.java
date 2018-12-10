@@ -29,9 +29,11 @@ public class RookBlack extends Figure {
         int delta = 0;
         if (Math.abs(dest.x - source.x) > Math.abs(dest.y - source.y)) {
             delta = Math.abs(dest.x - source.x);
-        } else delta = Math.abs(dest.y - source.y);
+        } else {
+            delta = Math.abs(dest.y - source.y);
+        }
         Cell[] steps = new Cell[delta];
-        if(deltaX != 0 && deltaY != 0) {
+        if (deltaX != 0 && deltaY != 0) {
             throw new ImpossibleMoveException("Ладья перемещается или по горизонтали, или по вертикали");
         }
         if (deltaX != 0 && deltaY == 0) {
@@ -42,7 +44,7 @@ public class RookBlack extends Figure {
                     index = -1;
                 }
                 for (int i = 0; i < steps.length; i++) {
-                    steps[i] = Cell.values()[source.ordinal() + (i + 1)* index * 8];
+                    steps[i] = Cell.values()[source.ordinal() + (i + 1) * index * 8];
                 }
             } else {
                 int index;
@@ -52,7 +54,7 @@ public class RookBlack extends Figure {
                     index = -1;
                 }
                 for (int i = 0; i < steps.length; i++) {
-                    steps[i] = Cell.values()[source.ordinal() + (i + 1)* index];
+                    steps[i] = Cell.values()[source.ordinal() + (i + 1) * index];
                 }
         }
         return steps;

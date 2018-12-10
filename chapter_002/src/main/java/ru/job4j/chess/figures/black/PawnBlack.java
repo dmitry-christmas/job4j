@@ -36,6 +36,9 @@ public class PawnBlack extends Figure {
         if ((this.move == 0 && source.y > dest.y + 2) || this.move != 0 && source.y > dest.y + 1) {
             throw new ImpossibleMoveException("Пешка ходит по одной клетке!");
         }
+        if (source.x != dest.x) {
+            throw new ImpossibleMoveException("Пешка не ходит по диагонали!");
+        }
         return steps;
     }
     @Override
