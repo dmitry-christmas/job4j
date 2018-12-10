@@ -1,5 +1,6 @@
 package ru.job4j.chess.figures.black;
 
+import ru.job4j.chess.ImpossibleMoveException;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
 
@@ -23,7 +24,14 @@ public class KingBlack extends Figure {
 
     @Override
     public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
+        Cell[] steps = new Cell[0];
+        int deltaX = dest.x - source.x;
+        int deltaY = dest.y - source.y;
+        if (Math.abs(deltaX) > 1 ||  Math.abs(deltaY) > 1) {
+            throw new ImpossibleMoveException("Король ходит по одной клетке!");
+        }
+        steps = new Cell[] {dest};
+        return steps;
     }
 
     @Override

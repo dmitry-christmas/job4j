@@ -32,12 +32,12 @@ public class PawnBlack extends Figure {
         }
         if (source.y == dest.y + 1 && source.x == dest.x) {
             steps = new Cell[] {dest};
-        } else if (move != 0) {
+        }
+        if ((this.move == 0 && source.y > dest.y + 2) || this.move != 0 && source.y > dest.y + 1) {
             throw new ImpossibleMoveException("Пешка ходит по одной клетке!");
         }
         return steps;
     }
-
     @Override
     public Figure copy(Cell dest) {
         return new PawnBlack(dest, move);
