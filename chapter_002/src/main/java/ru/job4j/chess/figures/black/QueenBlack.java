@@ -14,16 +14,13 @@ import ru.job4j.chess.figures.Figure;
 public class QueenBlack extends Figure {
 
     private final Cell position;
-
     public QueenBlack(final Cell position) {
         this.position = position;
     }
-
     @Override
     public Cell position() {
         return this.position;
     }
-
     @Override
     public Cell[] way(Cell source, Cell dest) {
         int deltaX = dest.x - source.x;
@@ -40,14 +37,12 @@ public class QueenBlack extends Figure {
         }
         boolean diagonal = isDiagonal(deltaX, deltaY);
         boolean horisontal = isHorizontalVertical(deltaX, deltaY);
-        if (!diagonal && !horisontal) {
-            throw new ImpossibleMoveException("Ферзь так не ходит");
-        }
         if (diagonal) {
             for (int i = 0; i < steps.length; i++) {
                 steps[i] = Cell.values()[source.ordinal() + (i + 1) * indexY + (i + 1) * indexX * 8];
             }
-        } else {
+        }
+        if (horisontal) {
             if (deltaX != 0 && deltaY == 0) {
                 int index;
                 if (deltaX > 0) {
@@ -70,26 +65,14 @@ public class QueenBlack extends Figure {
                     }
                 }
         }
+        if (!diagonal && !horisontal) {
+            throw new ImpossibleMoveException("Ферзь так не ходит");
+        }
         return steps;
     }
-
     @Override
     public Figure copy(Cell dest) {
         return new QueenBlack(dest);
     }
 
-    private boolean isDiagonal(int deltaX, int deltaY) {
-        boolean result = false;
-        if (Math.abs(deltaX) == Math.abs(deltaY)) {
-            result = true;
-        }
-        return result;
-    }
-    private boolean isHorizontalVertical(int deltaX, int deltaY) {
-        boolean result = false;
-        if ((deltaX != 0 && deltaY == 0) || (deltaY != 0 && deltaX == 0)) {
-            result = true;
-        }
-        return result;
-    }
 }

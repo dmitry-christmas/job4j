@@ -1,5 +1,6 @@
 package ru.job4j.chess;
 
+import org.junit.Before;
 import org.junit.Test;
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.black.*;
@@ -9,26 +10,7 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class PawnBlackTest {
-    Logic logic = new Logic();
-    @Test
-    public void whenRightMoveThenDest() {
-        buildDesk();
-        logic.move(Cell.A7, Cell.A5);
-        assertThat(logic.figures[0].position(), is(Cell.A5));
-    }
-    @Test(expected = ImpossibleMoveException.class)
-    public void whenWrongMoveThenImpossibleMoveException() {
-        buildDesk();
-        logic.move(Cell.A7, Cell.B6);
-    }
-    @Test(expected = OccupiedWayException.class)
-    public void whenOccupiedWayThenOccupiedWayException() {
-        buildDesk();
-        logic.move(Cell.C7, Cell.C5);
-        logic.move(Cell.D8, Cell.A5);
-        logic.move(Cell.A7, Cell.A5);
-    }
-
+    @Before
     public void buildDesk() {
         logic.figures[0] = new PawnBlack(Cell.A7, 0);
         logic.figures[1] = new PawnBlack(Cell.B7, 0);
@@ -62,5 +44,21 @@ public class PawnBlackTest {
         logic.figures[29] = new BishopWhite(Cell.F1);
         logic.figures[30] = new KnightWhite(Cell.G1);
         logic.figures[31] = new RookWhite(Cell.H1);
+    }
+    Logic logic = new Logic();
+    @Test
+    public void whenRightMoveThenDest() {
+        logic.move(Cell.A7, Cell.A5);
+        assertThat(logic.figures[0].position(), is(Cell.A5));
+    }
+    @Test(expected = ImpossibleMoveException.class)
+    public void whenWrongMoveThenImpossibleMoveException() {
+        logic.move(Cell.A7, Cell.B6);
+    }
+    @Test(expected = OccupiedWayException.class)
+    public void whenOccupiedWayThenOccupiedWayException() {
+        logic.move(Cell.C7, Cell.C5);
+        logic.move(Cell.D8, Cell.A5);
+        logic.move(Cell.A7, Cell.A5);
     }
 }

@@ -59,17 +59,4 @@ public class BishopBlack extends Figure {
         return new BishopBlack(dest);
     }
 
-    /**
-     * Метод проверки по диагонали ли идёт слон
-     * @param deltaX Разница по x.
-     * @param deltaY Разница по Y.
-     * @return true - по диагонали.
-     */
-    private boolean isDiagonal(int deltaX, int deltaY) {
-        boolean result = false;
-            if (Math.abs(deltaX) == Math.abs(deltaY)) {
-                result = true;
-            }
-        return result;
-    }
 }
