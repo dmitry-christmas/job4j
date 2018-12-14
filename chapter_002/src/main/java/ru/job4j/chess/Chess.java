@@ -141,14 +141,14 @@ public class Chess extends Application {
     }
 
     public void buildWhiteTeam(Group grid) {
-        this.add(new PawnWhite(Cell.A2), grid);
-        this.add(new PawnWhite(Cell.B2), grid);
-        this.add(new PawnWhite(Cell.C2), grid);
-        this.add(new PawnWhite(Cell.D2), grid);
-        this.add(new PawnWhite(Cell.E2), grid);
-        this.add(new PawnWhite(Cell.F2), grid);
-        this.add(new PawnWhite(Cell.G2), grid);
-        this.add(new PawnWhite(Cell.H2), grid);
+        this.add(new PawnWhite(Cell.A2, 0), grid);
+        this.add(new PawnWhite(Cell.B2, 0), grid);
+        this.add(new PawnWhite(Cell.C2, 0), grid);
+        this.add(new PawnWhite(Cell.D2, 0), grid);
+        this.add(new PawnWhite(Cell.E2, 0), grid);
+        this.add(new PawnWhite(Cell.F2, 0), grid);
+        this.add(new PawnWhite(Cell.G2, 0), grid);
+        this.add(new PawnWhite(Cell.H2, 0), grid);
         this.add(new RookWhite(Cell.A1), grid);
         this.add(new KnightWhite(Cell.B1), grid);
         this.add(new BishopWhite(Cell.C1), grid);

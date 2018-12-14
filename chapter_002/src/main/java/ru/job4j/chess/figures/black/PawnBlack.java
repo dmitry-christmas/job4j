@@ -33,11 +33,14 @@ public class PawnBlack extends Figure {
         if (source.y == dest.y + 1 && source.x == dest.x) {
             steps = new Cell[] {dest};
         }
-        if ((this.move == 0 && source.y > dest.y + 2) || this.move != 0 && source.y > dest.y + 1) {
+        if (this.move == 0 && source.y > dest.y + 2) {
+            throw new ImpossibleMoveException("Пешка ходит одну или две клетки!");
+        }
+        if (this.move != 0 && source.y > dest.y + 1) {
             throw new ImpossibleMoveException("Пешка ходит по одной клетке!");
         }
-        if (source.x != dest.x) {
-            throw new ImpossibleMoveException("Пешка не ходит по диагонали!");
+        if (source.x != dest.x || source.y < dest.y) {
+            throw new ImpossibleMoveException("Пешка так не ходит!");
         }
         return steps;
     }
