@@ -71,7 +71,7 @@ public class Chess extends Application {
                     } catch (FigureNotFoundException fnfe) {
                         System.out.println("Фигура не найдена!");
                     } catch (OccupiedWayException owe) {
-                        System.out.println("Препятствия на пути!");
+                        System.out.println(owe.msg);
                         rect.setX(((int) momento.getX() / 40) * 40 + 5);
                         rect.setY(((int) momento.getY() / 40) * 40 + 5);
                     }

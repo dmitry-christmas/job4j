@@ -2,6 +2,7 @@ package ru.job4j.chess.figures.white;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.FigureHorisontal;
 
 /**
  *
@@ -9,7 +10,7 @@ import ru.job4j.chess.figures.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class RookWhite extends Figure {
+public class RookWhite extends FigureHorisontal {
     private final Cell position;
 
     public RookWhite(final Cell position) {
@@ -21,10 +22,6 @@ public class RookWhite extends Figure {
         return this.position;
     }
 
-    @Override
-    public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
-    }
 
     @Override
     public Figure copy(Cell dest) {

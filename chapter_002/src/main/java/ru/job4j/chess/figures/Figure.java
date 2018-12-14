@@ -1,10 +1,15 @@
 package ru.job4j.chess.figures;
 
 public abstract class Figure {
-    public abstract Cell position();
+    public Cell position() {
+        return this.position;
+    }
+    public int getColor() {
+        return this.color;
+    }
     int move;
-
-
+    Cell position;
+    int color;
 
     public abstract Cell[] way(Cell source, Cell dest);
 
