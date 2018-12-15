@@ -2,6 +2,7 @@ package ru.job4j.chess.figures.white;
 
 import ru.job4j.chess.figures.Cell;
 import ru.job4j.chess.figures.Figure;
+import ru.job4j.chess.figures.FigureKing;
 
 /**
  *
@@ -9,7 +10,7 @@ import ru.job4j.chess.figures.Figure;
  * @version $Id$
  * @since 0.1
  */
-public class KingWhite extends Figure {
+public class KingWhite extends FigureKing {
     private final Cell position;
 
     public KingWhite(final Cell position) {
@@ -19,11 +20,6 @@ public class KingWhite extends Figure {
     @Override
     public Cell position() {
         return this.position;
-    }
-
-    @Override
-    public Cell[] way(Cell source, Cell dest) {
-        return new Cell[] {dest};
     }
 
     @Override
