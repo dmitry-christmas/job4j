@@ -2,7 +2,7 @@ package ru.job4j.chess.figures;
 
 import ru.job4j.chess.ImpossibleMoveException;
 
-public abstract class FigureKnight extends Figure{
+public abstract class FigureKnight extends Figure {
     @Override
     public Cell[] way(Cell source, Cell dest) {
         int deltaX = Math.abs(dest.x - source.x);

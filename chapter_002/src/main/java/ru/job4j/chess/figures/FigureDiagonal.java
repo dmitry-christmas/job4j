@@ -1,6 +1,6 @@
 package ru.job4j.chess.figures;
 import ru.job4j.chess.ImpossibleMoveException;
-public abstract class FigureDiagonal extends Figure{
+public abstract class FigureDiagonal extends Figure {
     /**
      * Метод выдачи массива клеток, через которые проходит фигура.
      * @param source клетка начала движения.
