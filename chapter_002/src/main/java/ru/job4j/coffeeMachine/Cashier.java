@@ -95,7 +95,7 @@ public class Cashier {
         }
         if (money != drink.getPrice()) {
             List<Coin> change = change(money, drink.getPrice());
-            System.out.println("Ваша сдача:");
+            System.out.println(format("Ваша сдача: %s Kč", money - drink.getPrice()));
             for (Coin coin : change) {
                 System.out.println(format("Монета достоинством в %s", coin.getValue()));
             }
