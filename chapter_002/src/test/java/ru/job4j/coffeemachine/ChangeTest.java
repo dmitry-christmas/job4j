@@ -1,5 +1,4 @@
 package ru.job4j.coffeemachine;
-
 import org.junit.Test;
 import ru.job4j.coffeemachine.coins.Coin;
 

@@ -4,7 +4,12 @@ import ru.job4j.coffeemachine.drinks.*;
 import java.util.ArrayList;
 import java.util.List;
 import static java.lang.String.format;
-
+/**
+ * Симуляция кофейного аппарата. ПРинимает чешские кроны 50, 20, 10, 5, 2 и 1 крону.
+ *  @author Dmitry Rozhdestvenskiy (mailto:dmr1433@gmail.com)
+ *  @version $Id$
+ *  @since 0.1
+ */
 public class Cashier {
     public HotDrink drink;
     private List<Coin> coins = new ArrayList<>();
