@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import static java.lang.String.format;
 /**
- * Симуляция кофейного аппарата. ПРинимает чешские кроны 50, 20, 10, 5, 2 и 1 крону.
+ * Симуляция кофейного аппарата. Принимает чешские кроны 50, 20, 10, 5, 2 и 1 крону.
  *  @author Dmitry Rozhdestvenskiy (mailto:dmr1433@gmail.com)
  *  @version $Id$
  *  @since 0.1
@@ -13,30 +13,24 @@ import static java.lang.String.format;
 public class Cashier {
     public HotDrink drink;
     private List<Coin> coins = new ArrayList<>();
-    public boolean firstAdd() {
-        boolean result = false;
-        for (int i = 0; i < 100; i++) {
-            if (i < 20) {
-                coins.add(new Coin1());
-            } else if (i < 40) {
-                coins.add(new Coin2());
-            } else if (i < 60) {
-                coins.add(new Coin5());
-            } else if (i < 80) {
-                coins.add(new Coin10());
-            } else if (i < 99) {
-                coins.add(new Coin20());
-            } else {
-                coins.add(new Coin50());
-            }
-        }
-        if (coins.size() == 100) {
-            result = true;
-        } else {
-            System.out.println("Ошибка!");
-        }
-        return result;
+    private int[] coinsList = {50, 20, 10, 5, 2, 1};
+    /**
+     * конструктор автомата с монетами по 1, 2, 5, 10, 20 и 50 крон по 20 штук каждой.
+     */
+    Cashier() {
+        add(new Coin1(), 20);
+        add(new Coin2(), 20);
+        add(new Coin5(), 20);
+        add(new Coin10(), 20);
+        add(new Coin20(), 20);
+        add(new Coin50(), 20);
     }
+    /**
+     *метод добавления монеты.
+     * @param coin Добавляемая монета.
+     * @param quantity Количество добавляемых монет.
+     * @return true, если добавление удалось.
+     */
     public boolean add(Coin coin, int quantity) {
         boolean result = false;
         int coinsQuantity = coins.size();
@@ -50,6 +44,11 @@ public class Cashier {
         }
         return result;
     }
+
+    /**
+     * Метод возвращает остаток денег в автомате.
+     * @return
+     */
     public int cashRemain() {
         int result = 0;
         for (Coin coin : coins) {
@@ -58,6 +57,12 @@ public class Cashier {
         System.out.println(format("В автомате денег на %s Kč", result));
         return result;
     }
+
+    /**
+     * Метод изымает монеты из автомата.
+     * @param value Достоинство изымаемой монеты.
+     * @return true, если изъятие удалось.
+     */
     public boolean take(int value) {
         boolean result = false;
         int index = -1;
@@ -99,7 +104,6 @@ public class Cashier {
      */
     public List<Coin> change(int money, int price) {
         List<Coin> coinsChange = new ArrayList<>();
-        int[] coinsList = {50, 20, 10, 5, 2, 1};
         int change = money - price;
         for (int coin = 0; coin < coinsList.length; coin++) {
             if (searchCoins(coinsList[coin]) >= 0 && (change >= coinsList[coin])) {
@@ -118,7 +122,6 @@ public class Cashier {
         }
         return coinsChange;
     }
-
     /**
      * Основной метод покупки товара.
      * @param choice номер товара.
@@ -134,27 +137,27 @@ public class Cashier {
         }
         System.out.println(format("Выбран вариант %s: Напиток %s за %s Kč", choice, drink.getName(), drink.getPrice()));
         for (int coin: money) {
-            if (coin == 1 || coin == 2 || coin == 5 || coin == 10 || coin == 20 || coin == 50) {
+            if (coin != coinsList[0] || coin != coinsList[1] || coin != coinsList[2] || coin != coinsList[3] || coin != coinsList[4] || coin != coinsList[5]) {
                 sum = sum + coin;
             } else {
                 System.out.println(format("Автомат не принимает монеты достоинством в %s Kč. Заберите монету обратно!", coin));
             }
-            if (coin == 50) {
+            if (coin == coinsList[0]) {
                 add(new Coin50(), 1);
             }
-            if (coin == 20) {
+            if (coin == coinsList[1]) {
                 add(new Coin20(), 1);
             }
-            if (coin == 10) {
+            if (coin == coinsList[2]) {
                 add(new Coin10(), 1);
             }
-            if (coin == 5) {
+            if (coin == coinsList[3]) {
                 add(new Coin5(), 1);
             }
-            if (coin == 2) {
+            if (coin == coinsList[4]) {
                 add(new Coin2(), 1);
             }
-            if (coin == 1) {
+            if (coin == coinsList[5]) {
                 add(new Coin1(), 1);
             }
         }
@@ -171,12 +174,5 @@ public class Cashier {
             System.out.println("Спасибо за то, что без сдачи!");
             System.out.println("Возьмите напиток!");
         }
-    }
-    public static void main(String[] args) {
-        Cashier cashier = new Cashier();
-        cashier.firstAdd();
-        cashier.cashRemain();
-        cashier.buy(1, 3, new int[]{100, 10});
-        cashier.cashRemain();
     }
 }
