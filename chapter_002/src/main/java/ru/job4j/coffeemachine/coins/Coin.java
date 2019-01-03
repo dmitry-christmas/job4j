@@ -13,4 +13,12 @@ public abstract class Coin {
     public int getWeight() {
         return weight;
     }
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = false;
+        if (value == ((Coin) obj).value) {
+            result = true;
+        }
+        return result;
+    }
 }
