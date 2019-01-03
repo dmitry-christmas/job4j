@@ -1,6 +1,6 @@
-package ru.job4j.coffeemachine;
+package ru.job4j.coffeevending;
 import org.junit.Test;
-import ru.job4j.coffeemachine.coins.*;
+import ru.job4j.coffeevending.coins.*;
 
 import java.util.Arrays;
 import java.util.List;

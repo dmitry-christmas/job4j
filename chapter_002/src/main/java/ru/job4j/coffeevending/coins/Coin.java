@@ -1,4 +1,4 @@
-package ru.job4j.coffeemachine.coins;
+package ru.job4j.coffeevending.coins;
 
 public abstract class Coin {
     private final int value;

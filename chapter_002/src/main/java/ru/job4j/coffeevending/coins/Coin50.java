@@ -1,4 +1,4 @@
-package ru.job4j.coffeemachine.coins;
+package ru.job4j.coffeevending.coins;
 
 public class Coin50 extends Coin {
     public Coin50() {

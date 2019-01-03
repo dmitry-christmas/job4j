@@ -1,4 +1,4 @@
-package ru.job4j.coffeemachine.drinks;
+package ru.job4j.coffeevending.drinks;
 
 public abstract class HotDrink {
     private final int price;
