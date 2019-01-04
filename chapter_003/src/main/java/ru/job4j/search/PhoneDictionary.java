@@ -21,11 +21,7 @@ public class PhoneDictionary {
     public List<Person> find(String key) {
         List<Person> result = new ArrayList<>();
         for (Person person : persons) {
-            String name = person.getName();
-            String surname = person.getSurname();
-            String phone = person.getPhone();
-            String adress = person.getAddress();
-            if (name.contains(key) || surname.contains(key) || phone.contains(key) || adress.contains(key)) {
+            if (person.getName().contains(key) || person.getSurname().contains(key) || person.getPhone().contains(key) || person.getAddress().contains(key)) {
                 result.add(person);
                 break;
             }
