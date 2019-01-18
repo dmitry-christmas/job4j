@@ -44,12 +44,14 @@ public class Tracker {
      */
     public boolean delete(String id) {
         boolean delete = false;
+        int index = 0;
             for (Item item : items) {
                 if (item.getId().equals(id)) {
-                    items.remove(item);
+                    items.remove(index);
                     delete = true;
                     break;
                 }
+                index++;
             }
         return delete;
     }
