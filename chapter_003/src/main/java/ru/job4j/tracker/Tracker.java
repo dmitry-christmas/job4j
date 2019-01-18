@@ -31,9 +31,7 @@ public class Tracker {
             next.setId(id);
             for (Item item : items) {
                 if (item.getId().equals(id)) {
-                    int index = items.indexOf(item);
-                    items.remove(index);
-                    items.add(index, next);
+                    items.set(items.indexOf(item), next);
                     replace = true;
                     break;
                 }
@@ -48,7 +46,7 @@ public class Tracker {
         boolean delete = false;
             for (Item item : items) {
                 if (item.getId().equals(id)) {
-                    items.remove(items.indexOf(item));
+                    items.remove(item);
                     delete = true;
                     break;
                 }
