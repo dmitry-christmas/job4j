@@ -58,7 +58,7 @@ public class Tracker {
      * @return массив искомых заявок.
      */
     public List<Item> findByName(String name) {
-        List <Item>result = new ArrayList<>();
+        List<Item> result = new ArrayList<>();
         for (Item item : items) {
             if (item.getName().equals(name)) {
                 result.add(item);
