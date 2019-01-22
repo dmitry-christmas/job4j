@@ -16,11 +16,8 @@ public class ListCompare implements Comparator<String> {
                 break;
             }
         }
-        if (result == 0 && left.length() > right.length()) {
-            result = 1;
-        }
-        if (result == 0 && left.length() < right.length()) {
-            result = - 1;
+        if (result == 0 && left.length() != right.length()) {
+            result = left.length() > right.length() ? 1 : -1;
         }
         return result;
     }
