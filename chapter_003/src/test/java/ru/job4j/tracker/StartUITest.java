@@ -151,11 +151,11 @@ public class StartUITest {
         StringBuilder menu = new StringBuilder();
         menu.append("Меню.");
         menu.append(System.lineSeparator());
-        menu.append("0. Добавить новую заявку.");
+        menu.append("0. Добавить заявку.");
         menu.append(System.lineSeparator());
         menu.append("1. Показать все заявки.");
         menu.append(System.lineSeparator());
-        menu.append("2. Редактировать заявку.");
+        menu.append("2. Заменить заявку по id.");
         menu.append(System.lineSeparator());
         menu.append("3. Удалить заявку.");
         menu.append(System.lineSeparator());

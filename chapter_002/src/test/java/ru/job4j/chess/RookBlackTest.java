@@ -35,6 +35,7 @@ public class RookBlackTest {
         logic.figures[20] = new PawnWhite(Cell.E2);
         logic.figures[21] = new PawnWhite(Cell.F2);
         logic.figures[22] = new PawnWhite(Cell.G2);
+        logic.figures[23] = new PawnWhite(Cell.H2);
         logic.figures[24] = new RookWhite(Cell.A1);
         logic.figures[25] = new KnightWhite(Cell.B1);
         logic.figures[26] = new BishopWhite(Cell.C1);

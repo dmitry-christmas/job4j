@@ -1,5 +1,7 @@
 package ru.job4j.coffeevending.coins;
 
+import java.util.Objects;
+
 public abstract class Coin {
     private final int value;
     private final int weight;
@@ -20,5 +22,9 @@ public abstract class Coin {
             result = true;
         }
         return result;
+    }
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
