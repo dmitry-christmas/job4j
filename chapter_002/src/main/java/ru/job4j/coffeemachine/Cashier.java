@@ -1,5 +1,4 @@
 package ru.job4j.coffeemachine;
-import ru.job4j.coffeemachine.coins.*;
 import ru.job4j.coffeemachine.drinks.*;
 import java.util.ArrayList;
 import java.util.List;
