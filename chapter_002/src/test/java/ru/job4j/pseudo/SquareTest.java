@@ -13,8 +13,10 @@ public class SquareTest {
         Square square = new Square();
         assertThat(square.draw(), is(
             new StringBuilder()
-            .append("XXXXXX\r\n")
-            .append("X    X\r\n")
+            .append("XXXXXX")
+            .append(System.lineSeparator())
+            .append("X    X")
+            .append(System.lineSeparator())
             .append("XXXXXX")
             .toString()
         ));
