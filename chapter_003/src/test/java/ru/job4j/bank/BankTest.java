@@ -68,4 +68,9 @@ public class BankTest {
         bank.transferMoney("17 645230", "1001", "17 655445", "0002", 200.00);
         assertThat(bank.getUserAccounts("17 645230").get(0).getValue(), is(100.00));
     }
+    @Test (expected = MoneyOutException.class)
+    public void transferTestException()  {
+        bank.addAccountToUser("17 645230", new Account(100.00, "1001"));
+        bank.transferMoney("17 645230", "1001", "17 655445", "0002", 200.00);
+    }
 }
