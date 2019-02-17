@@ -96,7 +96,7 @@ public class Bank {
         boolean result = false;
         User userSrc = userSearch(srcPassport);
         User userDst = userSearch(destPassport);
-        if (userSrc != null && userDst !=null) {
+        if (userSrc != null && userDst != null) {
             int indexSrc = requsitesSearch(srcRequisite, userSrc);
             int indexDst = requsitesSearch(dstRequisite, userDst);
             if (indexSrc >= 0 && indexDst >= 0) {
