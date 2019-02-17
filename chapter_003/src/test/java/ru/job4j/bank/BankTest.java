@@ -3,14 +3,11 @@ package ru.job4j.bank;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 public class BankTest {
     Bank bank = new Bank();
@@ -29,10 +26,6 @@ public class BankTest {
     public void addUserTest() {
         bank.addUser(new User("Petr", "17 655445"));
         User[] expected = {dmitry, petr};
-        /*
-        не понимаю, почему не работает команда ниже, но та же команда в assertThat работает
-        User[] userSet = bank.getBankDatabase().keySet().toArray();
-        */
         assertThat(bank.getBankDatabase().keySet().toArray(), is(expected));
     }
     @Test
@@ -63,14 +56,15 @@ public class BankTest {
         assertThat(bank.getBankDatabase().get(dmitry).get(0).getValue(), is(0.0));
     }
     @Test
-    public void transferTestError()  {
+    public void transferTestErrorMoneyOut()  {
         bank.addAccountToUser("17 645230", new Account(100.00, "1001"));
         bank.transferMoney("17 645230", "1001", "17 655445", "0002", 200.00);
         assertThat(bank.getUserAccounts("17 645230").get(0).getValue(), is(100.00));
     }
-    @Test (expected = MoneyOutException.class)
-    public void transferTestException()  {
+    @Test
+    public void transferTestUserError()  {
         bank.addAccountToUser("17 645230", new Account(100.00, "1001"));
-        bank.transferMoney("17 645230", "1001", "17 655445", "0002", 200.00);
+        bank.transferMoney("17 645230", "1001", "17 655445", "002", 200.00);
+        assertThat(bank.getUserAccounts("17 645230").get(0).getValue(), is(100.00));
     }
 }

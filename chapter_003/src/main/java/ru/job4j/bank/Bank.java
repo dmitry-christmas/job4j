@@ -40,13 +40,12 @@ public class Bank {
      * @param account Добавляемый аккаунт.
      */
     public void addAccountToUser(String passport, Account account) {
-        for (User user : bankDatabase.keySet()) {
-            if (user.getPassport().equals(passport) && !bankDatabase.get(user).contains(account)) {
-                bankDatabase.get(user).add(account);
-                break;
-            }
+        List<Account> accounts = getUserAccounts(passport);
+        if (accounts != null && !accounts.contains(account)) {
+            accounts.add(account);
         }
     }
+
 
     /**
      * Метод удаления аккаунта у пользователя.
@@ -68,15 +67,16 @@ public class Bank {
      * @return ArrayList со списком счетов.
      */
     public List<Account> getUserAccounts(String passport) {
-        List<Account> result = new ArrayList<>();
+        List<Account> result = null;
         for (User user : bankDatabase.keySet()) {
             if (user.getPassport().equals(passport)) {
-            result.addAll(bankDatabase.get(user));
+            result = bankDatabase.get(user);
             break;
             }
         }
-        if (result.size() <= 0) {
-            throw new UserOutException("У клиента с паспортом " + passport + " нет банковского счёта!");
+        if (result == null) {
+            System.out.println("Клиента с паспортом " + passport + "в банке не зарегистрировано!");
+
         }
         return result;
     }
@@ -94,39 +94,31 @@ public class Bank {
             String srcPassport, String srcRequisite, String destPassport,
             String dstRequisite, double amount) {
         boolean result = false;
-        try {
-            User userSrc = userSearch(srcPassport);
-            User userDst = userSearch(destPassport);
+        User userSrc = userSearch(srcPassport);
+        User userDst = userSearch(destPassport);
+        if (userSrc != null && userDst !=null) {
             int indexSrc = requsitesSearch(srcRequisite, userSrc);
             int indexDst = requsitesSearch(dstRequisite, userDst);
-
-            Account accSrc = bankDatabase.get(userSrc).get(indexSrc);
-            Account accDest = bankDatabase.get(userDst).get(indexDst);
-        if (accSrc.getValue() >= amount) {
-            accSrc.transfer(accDest, amount);
-            result = true;
-        } else {
-            throw new MoneyOutException("Денег на счёте недостаточно!");
+            if (indexSrc >= 0 && indexDst >= 0) {
+                Account accSrc = bankDatabase.get(userSrc).get(indexSrc);
+                Account accDest = bankDatabase.get(userDst).get(indexDst);
+                if (accSrc.getValue() >= amount) {
+                    accSrc.transfer(accDest, amount);
+                    result = true;
+                } else {
+                    System.out.println("Денег на счёте недостаточно!");
+                }
+            }
         }
-        } catch (UserOutException uoe) {
-            System.out.println(uoe.msg);
-        } catch (MoneyOutException moe) {
-            System.out.println(moe.msg);
-        } catch (AccountOutException aoe) {
-            System.out.println(aoe.msg);
-        } catch (Exception e) {
-            System.out.println("перехвачено исключение!");
-        }
-        return result;
+            return result;
     }
-
     /**
      * внутренний метод поиска клиента по паспорту.
      * @param passport паспортные данные клиента.
      * @return возвращает найденного пользователя.
      * @throws UserOutException, если пользователь не найден.
      */
-    private User userSearch(String passport) throws UserOutException {
+    private User userSearch(String passport) {
         User result = null;
         for (User user : bankDatabase.keySet()) {
             if (user.getPassport().equals(passport)) {
@@ -135,12 +127,10 @@ public class Bank {
             }
         }
             if (result == null) {
-                throw new UserOutException("Заданы неверные паспортные данные!");
+                System.out.println("Клиента с паспортом " + passport + " в банке нет!");
             }
-
         return result;
     }
-
     /**
      * метод поиска банковского счёта пользователя по реквизитам.
      * @param req реквизита счёта.
@@ -148,7 +138,7 @@ public class Bank {
      * @return возвращает индекс счёта в ArrayList со счетами.
      * @throws AccountOutException, если счёт не найден.
      */
-    private int requsitesSearch(String req, User user) throws AccountOutException {
+    private int requsitesSearch(String req, User user) {
         int result = -1;
         for (Account account : bankDatabase.get(user)) {
             if (req.equals(account.getRequisites())) {
@@ -157,7 +147,7 @@ public class Bank {
             }
         }
         if (result < 0) {
-            throw new AccountOutException("Заданы неверные реквизиты счёта!");
+            System.out.println("Счёта с реквизитами " + req + " в банке нет");
         }
         return result;
     }
