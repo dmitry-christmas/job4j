@@ -54,8 +54,6 @@ public class Bank {
             );
         }
     }
-
-
     /**
      * Метод удаления аккаунта у пользователя.
      * @param passport паспортные данные пользователя.
@@ -103,23 +101,15 @@ public class Bank {
             String srcPassport, String srcRequisite, String destPassport,
             String dstRequisite, double amount) {
         boolean result = false;
-        User userSrc = userSearch(srcPassport);
-        User userDst = userSearch(destPassport);
-        if (userSrc != null && userDst != null) {
-            int indexSrc = requsitesSearch(srcRequisite, userSrc);
-            int indexDst = requsitesSearch(dstRequisite, userDst);
-            if (indexSrc >= 0 && indexDst >= 0) {
-                Account accSrc = bankDatabase.get(userSrc).get(indexSrc);
-                Account accDest = bankDatabase.get(userDst).get(indexDst);
-                if (accSrc.getValue() >= amount) {
-                    accSrc.transfer(accDest, amount);
-                    result = true;
-                } else {
-                    System.out.println("Денег на счёте недостаточно!");
-                }
+        Account accSrc = accountSearch(srcPassport, srcRequisite);
+        Account accDest = accountSearch(destPassport, dstRequisite);
+        if (accSrc != null && accDest != null && accSrc.getValue() >= amount) {
+                accSrc.transfer(accDest, amount);
+                result = true;
+            } else {
+                System.out.println("Денег на счёте недостаточно!");
             }
-        }
-            return result;
+        return result;
     }
     /**
      * внутренний метод поиска клиента по паспорту.
@@ -155,6 +145,23 @@ public class Bank {
         }
         if (result < 0) {
             System.out.println("Счёта с реквизитами " + req + " в банке нет");
+        }
+        return result;
+    }
+    private Account accountSearch(String passport, String req) {
+        Account result = null;
+        for (User user : bankDatabase.keySet()) {
+            if (user.getPassport().equals(passport)) {
+                for (Account account : bankDatabase.get(user)) {
+                    if (account.getRequisites().equals(req)) {
+                        result = account;
+                        break;
+                    }
+                }
+            }
+            if (result != null) {
+                break;
+            }
         }
         return result;
     }
