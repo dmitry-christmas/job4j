@@ -23,7 +23,7 @@ public class Bank {
      * @param user новый пользователь.
      */
     public void addUser(User user) {
-        bankDatabase.put(user, new ArrayList<>());
+        bankDatabase.putIfAbsent(user, new ArrayList<>());
     }
 
     /**
@@ -40,9 +40,18 @@ public class Bank {
      * @param account Добавляемый аккаунт.
      */
     public void addAccountToUser(String passport, Account account) {
-        List<Account> accounts = getUserAccounts(passport);
+        /*List<Account> accounts = getUserAccounts(passport);
         if (accounts != null && !accounts.contains(account)) {
             accounts.add(account);
+        }*/
+        if (account != null) {
+            bankDatabase.computeIfPresent(userSearch(passport), (user, list) -> {
+                if (!list.contains(account)) {
+                    list.add(account);
+                }
+                return list;
+                }
+            );
         }
     }
 
@@ -116,7 +125,6 @@ public class Bank {
      * внутренний метод поиска клиента по паспорту.
      * @param passport паспортные данные клиента.
      * @return возвращает найденного пользователя.
-     * @throws UserOutException, если пользователь не найден.
      */
     private User userSearch(String passport) {
         User result = null;
@@ -136,7 +144,6 @@ public class Bank {
      * @param req реквизита счёта.
      * @param user пользователь, у которого ищем счёт.
      * @return возвращает индекс счёта в ArrayList со счетами.
-     * @throws AccountOutException, если счёт не найден.
      */
     private int requsitesSearch(String req, User user) {
         int result = -1;
